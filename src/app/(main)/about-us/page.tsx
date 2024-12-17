@@ -30,7 +30,10 @@ const AboutUs = () => {
             <strong>Iman Allahverdiyev</strong>
           </li>
           <li>
-            <strong>Chris</strong>
+            <strong>Christos Kaladelfos</strong>
+          </li>
+          <li>
+            <strong>Kajetan Domińczak</strong>
           </li>
         </ul>
 
