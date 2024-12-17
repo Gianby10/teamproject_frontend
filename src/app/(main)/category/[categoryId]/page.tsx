@@ -1,10 +1,7 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import MovieSearchBar from "@/components/MovieSearchBar";
 import MoviesList from "@/components/MoviesList";
 import { MoviesCategoryResponse, MoviesResponse } from "@/lib/types";
-import { Loader2 } from "lucide-react";
-import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 type Props = {
   params: {
@@ -14,7 +11,7 @@ type Props = {
 
 const getMovies = async (categoryId: string) => {
   const response = await fetch(
-    `http://127.0.0.1:4444/api/movies/category/${categoryId}`,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/movies/category/${categoryId}`,
     {
       method: "GET",
     }
@@ -24,8 +21,7 @@ const getMovies = async (categoryId: string) => {
 };
 
 const CategoryPage = async ({ params }: Props) => {
-  const searchParams = await params;
-  const categoryId = searchParams.categoryId;
+  const { categoryId } = await params;
   const movies = await getMovies(categoryId);
   const categoryName = movies[0].categories[0].category.name;
   return (

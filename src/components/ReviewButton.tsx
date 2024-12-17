@@ -4,7 +4,6 @@ import { Button } from "./ui/button";
 import { Loader2, Star } from "lucide-react";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -13,7 +12,6 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { Textarea } from "./ui/textarea";
-import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import {
   Form,
@@ -40,11 +38,10 @@ const ReviewButton = ({ movieId }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { toast } = useToast();
-  const router = useRouter();
   const form = useForm<z.infer<typeof formReviewSchema>>({
     resolver: zodResolver(formReviewSchema),
     defaultValues: {
-      // @ts-ignore
+      // @ts-expect-error
       rating: "",
       content: "",
       title: "",

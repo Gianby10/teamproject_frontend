@@ -15,7 +15,7 @@ export const isAuth = async () => {
 
     // Se il token è valido, ritorna true (l'utente è autenticato)
     return decoded;
-  } catch (error) {
+  } catch (err) {
     // Se il token non è valido o è scaduto, ritorna false
     console.log("Token non valid");
     return null;

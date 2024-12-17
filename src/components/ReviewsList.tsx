@@ -1,11 +1,7 @@
 import React from "react";
 
 import { Separator } from "./ui/separator";
-import {
-  MovieDetailsResponse,
-  Review as TReview,
-  ReviewsResponse,
-} from "@/lib/types";
+import { Review as TReview } from "@/lib/types";
 import Review from "./Review";
 import { isAuth } from "@/lib/auth";
 
@@ -22,7 +18,7 @@ const ReviewsList = async ({ reviews }: Props) => {
       )}
       <div className="grid grid-cols-2 gap-4">
         {reviews.map((review) => (
-          // @ts-ignore
+          // @ts-expect-error
           <Review key={review.id} review={review} userId={user.id} />
         ))}
       </div>

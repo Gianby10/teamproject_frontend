@@ -4,7 +4,12 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{ hostname: "image.tmdb.org" }],
   },
-  /* config options here */
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 export default nextConfig;

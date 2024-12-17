@@ -35,15 +35,15 @@ const AboutUs = () => {
         </ul>
 
         <p className="mt-8 text-lg text-gray-600">
-          Together, we've combined our skills and expertise to bring this
+          Together, we&apos;ve combined our skills and expertise to bring this
           project to life, and we are proud to present the final product.
         </p>
 
         <p className="mt-4 text-lg text-gray-600">
-          Our platform is more than just a review site—it's a community where
-          users can come together, share their experiences, and discover new
-          movies based on trusted opinions. We hope you enjoy using it as much
-          as we enjoyed building it!
+          Our platform is more than just a review site—it&apos;s a community
+          where users can come together, share their experiences, and discover
+          new movies based on trusted opinions. We hope you enjoy using it as
+          much as we enjoyed building it!
         </p>
       </div>
     </div>
