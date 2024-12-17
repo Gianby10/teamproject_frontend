@@ -29,12 +29,6 @@ export const metadata: Metadata = {
     siteName: "Movie Reviews",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Movie Reviews",
-    description:
-      "Join Movie Reviews to explore a wide variety of films, write your reviews, and interact with other movie fans.",
-  },
   icons: {
     icon: "/favicon", // /public path
   },

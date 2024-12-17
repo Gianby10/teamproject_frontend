@@ -13,9 +13,12 @@ import { Search } from "lucide-react";
 import Image from "next/image";
 
 const getPopularMovies = async () => {
-  const response = await fetch("http://127.0.0.1:4444/api/movies", {
-    method: "GET",
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/movies`,
+    {
+      method: "GET",
+    }
+  );
   const data: MoviesResponse = await response.json();
   return data;
 };

@@ -47,6 +47,11 @@ const Review = ({ review, userId }: Props) => {
           description: "Deleted successfully.",
         });
         router.refresh();
+      } else {
+        toast({
+          title: "Error",
+          description: error,
+        });
       }
     } catch (error: any) {
       console.log(error.message);

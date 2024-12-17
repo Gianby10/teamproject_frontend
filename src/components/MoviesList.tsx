@@ -23,7 +23,7 @@ const MoviesList = ({ initialMovies }: Props) => {
     setError("");
     try {
       const response = await fetch(
-        "http://127.0.0.1:4444/api/movies/search?title=" + "venom",
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/movies/search?title=v`,
         {
           method: "GET",
         }

@@ -22,9 +22,12 @@ const PopularMoviesList = ({ initialMovies }: Props) => {
     setIsLoading(true);
     setError("");
     try {
-      const response = await fetch("http://127.0.0.1:4444/api/movies", {
-        method: "GET",
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/movies`,
+        {
+          method: "GET",
+        }
+      );
       const data: MoviesResponse = await response.json();
       console.log(data);
       setMovies(data);

@@ -6,13 +6,12 @@ import { CategoriesResponse, MoviesResponse } from "@/lib/types";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
-
-type Props = {};
+import React, { Suspense, useEffect, useState } from "react";
 
 const getMovies = async (queryString: string) => {
   const response = await fetch(
-    "http://127.0.0.1:4444/api/movies/search?title=" + queryString,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/movies/search?title=` +
+      queryString,
     {
       method: "GET",
     }
@@ -22,14 +21,17 @@ const getMovies = async (queryString: string) => {
 };
 
 const getCategories = async () => {
-  const response = await fetch("http://127.0.0.1:4444/api/movies/categories", {
-    method: "GET",
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/movies/categories`,
+    {
+      method: "GET",
+    }
+  );
   const data: CategoriesResponse = await response.json();
   return data;
 };
 
-const SearchPage = ({}: Props) => {
+const SearchPage = () => {
   const searchParams = useSearchParams();
   const queryString = searchParams.get("q") || "";
   const [movies, setMovies] = useState<MoviesResponse>([]);
@@ -151,4 +153,13 @@ const SearchPage = ({}: Props) => {
   );
 };
 
-export default SearchPage;
+// Wrap the entire SearchPage component in a Suspense boundary
+const SuspendedSearchPage = () => (
+  <Suspense
+    fallback={<Loader2 className="h-8 w-8 animate-spin text-green-600" />}
+  >
+    <SearchPage />
+  </Suspense>
+);
+
+export default SuspendedSearchPage;
