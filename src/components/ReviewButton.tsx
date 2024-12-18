@@ -53,20 +53,26 @@ const ReviewButton = ({ movieId }: Props) => {
       setIsLoading(true);
       setError("");
       const { error, success } = await submitReview(values, movieId);
+      console.log(error, success);
       if (error) {
-        setError(error);
+        toast({
+          title: "Error",
+          description: error,
+          variant: "destructive",
+        });
+        return;
       }
       if (success) {
         toast({
           title: "Success",
           description: "Review submitted successfully",
         });
+        form.reset();
 
         setIsDialogOpen(false);
-        // router.refresh();
       }
     } catch (error: any) {
-      console.log(error.message);
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
@@ -159,11 +165,6 @@ const ReviewButton = ({ movieId }: Props) => {
                     </FormItem>
                   )}
                 />
-                {error && (
-                  <p className="text-center text-sm font-semibold text-red-900">
-                    {error}
-                  </p>
-                )}
               </div>
 
               <DialogFooter className="flex justify-between items-center mt-6">

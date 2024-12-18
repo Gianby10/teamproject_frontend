@@ -23,29 +23,41 @@ export const submitReview = async (
     const parsedData = result.data;
     const cookieStore = await cookies(); // Ottieni i cookies dalla richiesta
     const token = cookieStore.get("session")?.value;
+
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/reviews/movie/${movieId}`,
-      // @ts-ignore
-      { ...parsedData, movieId, userId: user.id },
+      {
+        ...parsedData,
+        movieId,
+        // @ts-ignore
+        userId: user.id,
+      },
       {
         headers: {
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       }
     );
-    console.log(response);
-    if (response.data) {
+
+    const data = response.data;
+    if (data.error) {
+      return {
+        error:
+          "You have already reviewed this film, please edit or delete your review.",
+      };
+    }
+
+    if (data) {
       revalidatePath(`/movies/${movieId}`);
       return {
         success: true,
       };
     }
+
     throw new Error("Can't create a new review now, try again later.");
   } catch (error: any) {
-    if (error.response.data.message)
-      return { error: error.response.data.message };
-
-    return { error };
+    return { error: error.message };
   }
 };
 

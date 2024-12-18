@@ -2,22 +2,9 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import RatingBadge from "@/components/RatingBadge";
 import ReviewButton from "@/components/ReviewButton";
 import ReviewsList from "@/components/ReviewsList";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { isAuth } from "@/lib/auth";
-import {
-  MovieDetailsResponse,
-  MoviesResponse,
-  ReviewsResponse,
-} from "@/lib/types";
+import { MovieDetailsResponse, ReviewsResponse } from "@/lib/types";
 import axios from "axios";
 import { format } from "date-fns";
 import { Lock, Star } from "lucide-react";
